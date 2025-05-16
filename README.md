@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# Runners ration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my app. Please insert your running distance, estimated pace, weight
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔹 1. Carbohydrate Intake Before a Run
+To avoid gastrointestinal issues while still being energized:
 
-## Expanding the ESLint configuration
+Formula:
+1–4 grams of carbs per kg of body weight depending on how many hours before the run you're eating.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Time Before Run Carb Amount (g/kg body weight)
+1 hour 1 g/kg
+2 hours 2 g/kg
+3 hours 3 g/kg
+4 hours 4 g/kg
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Example:
+If a runner weighs 70 kg and eats 2 hours before:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+70 × 2 = 140g of carbs
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🟡 Avoid too much fat and fiber before running to reduce risk of bowel issues.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+🔹 2. During the Run (For Long Runs)
+Only relevant for runs longer than 60–75 minutes.
+
+Formula:
+30–60g carbs per hour for moderate runs
+
+Up to 90g carbs/hour for intense endurance (using multiple carb types like glucose + fructose)
+
+💡 Products like gels, bananas, or isotonic drinks work well here.
+
+🔹 3. Hydration
+General hydration guidance is more flexible, but:
+
+Drink ~400–600 ml of water 1–2 hours before a run
+
+During the run: ~150–250 ml every 20 minutes (depending on sweat rate)
+
+Include electrolytes for longer or hot weather runs.
+
+🔹 4. Post-Run Recovery
+For recovery, the “3:1 ratio” is often used:
+
+Formula:
+1g protein + 3g carbs per kg of body weight within 30–60 minutes after running
+
+Example:
+70 kg runner:
+
+210g carbs + 70g protein
+
+This aids glycogen replenishment and muscle repair.
