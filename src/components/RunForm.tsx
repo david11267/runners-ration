@@ -97,6 +97,28 @@ export default function RunForm() {
 
         <FormField
           control={form.control}
+          name="distance"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Distance</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.valueAsNumber;
+                    field.onChange(isNaN(value) ? undefined : value);
+                  }}
+                />
+              </FormControl>
+              <FormDescription>How far are you running (km)</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="sex"
           render={({ field }) => (
             <FormItem>
