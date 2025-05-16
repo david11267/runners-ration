@@ -3,7 +3,7 @@ import RunForm from "./components/RunForm";
 
 function App() {
   return (
-    <div className="grid  grid-cols-6 ">
+    <div className="grid  flex flex-col justify-center ">
       <div className="col-start-2 col-span-4 ">
         <div className="flex justify-evenly">
           <h1 className="text-3xl text-center m-8"> Runners ration</h1>
