@@ -1,12 +1,13 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Switch } from "./ui/switch";
+import { Slider } from "./ui/slider";
 //this is metric data
 const formSchema = z.object({
   weight: z.number().min(30).max(200),
@@ -19,8 +20,8 @@ const formSchema = z.object({
   runType: z.enum(["Easy", "Tempo", "Interval", "Race", "Long"]),
   weatherDegrees: z
     .number()
-    .min(-30, { message: "Temperature is extremely cold. Be cautious when running below -30°C." })
-    .max(45, { message: "Temperature is extremely hot. Avoid running above 45°C." }),
+    .min(-10, { message: "It's quite cold. Dress warmly and be cautious of icy conditions below -10°C." })
+    .max(35, { message: "It's very hot. Stay hydrated and avoid running above 35°C if possible." }),
   terrainType: z.enum(["Flat", "Hilly", "Trail"]),
   distance: z.number().min(1).max(100),
 });
@@ -65,11 +66,178 @@ export default function RunForm() {
                 />
               </FormControl>
               <FormDescription>How old are you</FormDescription>
-
               <FormMessage />
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="weight"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Weight</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.valueAsNumber;
+                    field.onChange(isNaN(value) ? undefined : value);
+                  }}
+                />
+              </FormControl>
+              <FormDescription>How much do you weight (kg)</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="sex"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Sex</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your sex" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Male">Male</SelectItem>
+                  <SelectItem value="Female">Female</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <FormDescription>What sex are you?</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="giProblems"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Gastrointestinal problems</FormLabel>
+              <FormControl>
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
+              </FormControl>
+              <FormDescription>Do you have any gastrointestinal problems?</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="pace"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Pace</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.valueAsNumber;
+                    field.onChange(isNaN(value) ? undefined : value);
+                  }}
+                />
+              </FormControl>
+              <FormDescription>About how fast are you planning to run (km/min)</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="runType"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Run type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your run type" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Easy">Easy</SelectItem>
+                  <SelectItem value="Tempo">Tempo</SelectItem>
+                  <SelectItem value="Interval">Interval</SelectItem>
+                  <SelectItem value="Race">Race</SelectItem>
+                  <SelectItem value="Long">Long</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <FormDescription>What sort of running are you doing today</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="startTime"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Start Time</FormLabel>
+              <Input onChange={field.onChange} type="time" />
+              <FormDescription>When are you planning on starting your run</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="terrainType"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Terrain type</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="select the terrain on your route" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Flat">Flat</SelectItem>
+                  <SelectItem value="Hilly">Hilly</SelectItem>
+                  <SelectItem value="Trail">Trail</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormDescription>What type of surface are you running on</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="weatherDegrees"
+          render={({ field }) => (
+            <FormItem>
+              <span className="text-2xl">{field.value}&deg;C</span>
+              <Slider
+                value={[field.value ?? 0]}
+                onValueChange={(value) => field.onChange(value[0])}
+                min={-20}
+                max={45}
+                step={1}
+              />
+              <FormDescription>How warm or cold is the weather</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
