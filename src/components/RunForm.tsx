@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Switch } from "./ui/switch";
 import { Slider } from "./ui/slider";
+import EmojiSwitcher from "./EmojiSwitcher";
 //this is metric data
 const formSchema = z.object({
   weight: z.number().min(30).max(200),
@@ -15,8 +16,8 @@ const formSchema = z.object({
   sex: z.enum(["Male", "Female", "Other"]),
   giProblems: z.boolean(),
   pace: z.number().min(2.5).max(20),
-  duration: z.string().time({ precision: 2 }),
-  startTime: z.string().time({ precision: 2 }),
+  duration: z.string().time(),
+  startTime: z.string().time(),
   runType: z.enum(["Easy", "Tempo", "Interval", "Race", "Long"]),
   weatherDegrees: z
     .number()
@@ -29,6 +30,7 @@ const formSchema = z.object({
 export default function RunForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    mode: "onChange",
     defaultValues: {
       giProblems: false,
       pace: 6,
@@ -224,7 +226,9 @@ export default function RunForm() {
           name="weatherDegrees"
           render={({ field }) => (
             <FormItem>
-              <span className="text-2xl">{field.value}&deg;C</span>
+              <div>
+                <span className="text-2xl">{field.value}&deg;C</span> <EmojiSwitcher number={field.value} />
+              </div>
               <Slider
                 value={[field.value ?? 0]}
                 onValueChange={(value) => field.onChange(value[0])}
