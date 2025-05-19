@@ -1,0 +1,23 @@
+{
+  "preRun": {
+    "time": "05:30",
+    "carbs_g": 98,
+    "foods": ["White toast with honey", "Banana", "Rice with syrup"]
+  },
+  "hydration": {
+    "preRun_ml": [400, 200],
+    "duringRun_ml_per_20min": 200,
+    "addElectrolytes": true
+  },
+  "midRun": {
+    "startMin": 45,
+    "carbs_g_per_hour": 30,
+    "items": ["Energy gel at 08:15", "Energy gel at 09:00"]
+  },
+  "postRun": {
+    "windowMin": 60,
+    "carbs_g": 65,
+    "protein_g": 20,
+    "meals": ["Greek yogurt with berries", "Banana-protein smoothie"]
+  }
+}
