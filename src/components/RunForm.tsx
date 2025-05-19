@@ -106,8 +106,7 @@ export default function RunForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    alert('submit');
-    console.log(values);
+    //senda data to api and put result in the dialog
   }
 
   return (
